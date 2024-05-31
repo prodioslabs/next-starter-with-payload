@@ -1,27 +1,16 @@
-import NextAuth from 'next-auth'
-import { PrismaAdapter } from '@auth/prisma-adapter'
-import GoogleProvider from 'next-auth/providers/google'
-import GithubProvider from 'next-auth/providers/github'
-import { env } from '@/env.mjs'
-import { prisma } from './db'
+import { cookies } from 'next/headers'
+import { UserWithoutSensitiveData } from '@/server/context'
 
-export const {
-  handlers: { GET, POST },
-  auth,
-} = NextAuth({
-  providers: [
-    GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
-    }),
-    GithubProvider({
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET,
-    }),
-  ],
-  pages: {
-    signIn: '/signin',
-    signOut: '/signout',
-  },
-  adapter: PrismaAdapter(prisma),
-})
+export async function getUser() {
+  try {
+    const _cookies = cookies()
+    const response = await fetch(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/users/me`, {
+      headers: { Cookie: _cookies.toString() },
+    })
+    const data: { user: UserWithoutSensitiveData | null } = await response.json()
+
+    return data.user
+  } catch (error) {
+    return null
+  }
+}

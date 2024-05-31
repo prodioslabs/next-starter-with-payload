@@ -1,6 +1,5 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
 import {
   CalendarIcon,
   FilesIcon,
@@ -38,11 +37,10 @@ type AppShellProps = {
 }
 
 export default function AppShell({ children, className, style }: AppShellProps) {
-  const session = useSession({
-    required: false, // change it true if you don't want to show the app shell to unauthenticated users
-  })
-
   const router = useRouter()
+
+  // TODO: Get user session status from payload
+  const sessionStatus = ''
 
   return (
     <div className={cn('flex h-screen', className)} style={style}>
@@ -74,13 +72,13 @@ export default function AppShell({ children, className, style }: AppShellProps) 
             />
           </div>
           <div className="flex-1" />
-          {session.status === 'authenticated' ? (
+          {sessionStatus === 'authenticated' ? (
             <>
               <NotificationsMenu />
               <div className="h-6 border-r" />
               <AccountMenu />
             </>
-          ) : session.status === 'unauthenticated' ? (
+          ) : sessionStatus === 'unauthenticated' ? (
             <Button
               icon={<UserIcon />}
               onClick={() => {

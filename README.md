@@ -1,6 +1,6 @@
 # Next Starter
 
-This is NextJS starter template with Typescript, Shadcn UI, Tailwindcss, Prisma and tRPC.
+This is NextJS starter template with Typescript, Shadcn UI, Tailwindcss, Payload and tRPC.
 
 ## Getting Started
 
