@@ -10,11 +10,12 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    home: Home;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    home: Home;
+  };
   locale: 'en' | 'hi';
   user: User & {
     collection: 'users';
@@ -58,17 +59,6 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home".
- */
-export interface Home {
-  id: string;
-  title?: string | null;
-  heroImage: string | Media;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
@@ -100,6 +90,17 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home".
+ */
+export interface Home {
+  id: string;
+  title?: string | null;
+  heroImage: string | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 
 
