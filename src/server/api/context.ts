@@ -1,8 +1,5 @@
-export type CreateContextOptions = {
-  // TODO: Add user context
-}
+export type CreateContextOptions = {}
 
 export async function createTRPCContext(): Promise<CreateContextOptions> {
-  // TODO: Get user from payload
   return {}
 }

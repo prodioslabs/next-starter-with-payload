@@ -77,6 +77,10 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         fade: 'fade 1s linear infinite',
       },
+      zIndex: {
+        navbar: '60',
+        popover: '61',
+      },
     },
   },
   plugins: [animate],

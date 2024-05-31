@@ -1,5 +1,5 @@
+import { getUser } from '@/lib/auth'
 import { User } from '@/payload/types'
-import { getUser } from './auth'
 
 export type UserWithoutSensitiveData = Pick<User, 'id' | 'email' | 'createdAt' | 'updatedAt'> & {}
 

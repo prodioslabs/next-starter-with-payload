@@ -49,7 +49,7 @@ export default function ThemeToggle({ className, style }: ThemeToggleProps) {
           </AnimatePresence>
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" side="right">
+      <DropdownMenuContent align="end" side="bottom" className="z-popover">
         <DropdownMenuItem
           onClick={() => {
             setTheme('light')
