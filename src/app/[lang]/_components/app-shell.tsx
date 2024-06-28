@@ -12,7 +12,7 @@ export default function AppShell({ children }: React.PropsWithChildren) {
 
   return (
     <div>
-      <div className="z-navbar sticky top-0">
+      <div className="sticky top-0 z-navbar">
         <div className="border-b bg-muted">
           <div className="container flex items-center py-1.5">
             <div className="flex-1" />

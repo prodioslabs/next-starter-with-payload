@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:types": "PAYLOAD_CONFIG_PATH=src/payload/config.ts payload generate:types",
+    "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload/config.ts payload generate:types",
     "format": "prettier --write --no-error-on-unmatched-pattern \"src/**/*.{ts,tsx,js}\" *.{ts,tsx,js}"
   },
   "dependencies": {
@@ -56,6 +56,7 @@
     "@next/eslint-plugin-next": "^14.2.3",
     "@types/negotiator": "^0.6.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-standard-with-typescript": "^39.0.0",
     "eslint-plugin-import": "^2.29.1",
