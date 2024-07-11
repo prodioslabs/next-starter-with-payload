@@ -3,7 +3,9 @@ import { getPayloadClient } from '@/payload/client'
 import { getURLFromMedia } from '@/payload/utils'
 
 type HomePageProps = {
-  params: { lang: 'en' | 'hi' }
+  params: {
+    lang: 'en' | 'hi'
+  }
 }
 
 export default async function HomePage({ params }: HomePageProps) {
@@ -12,8 +14,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <div className="p-4">
-      <div className="text-3xl font-semibold">{title}</div>
-      <Image src={getURLFromMedia(heroImage)} alt="Hero Image" />
+      <div className="text-2xl font-semibold">{title}</div>
+      <Image src={getURLFromMedia(heroImage)} className="mt-4" alt="Hero Image" height={256} width={256} />
     </div>
   )
 }
