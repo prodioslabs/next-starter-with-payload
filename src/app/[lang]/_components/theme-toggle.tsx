@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { MoonIcon, SunIcon } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
@@ -19,34 +18,13 @@ export default function ThemeToggle({ className, style }: ThemeToggleProps) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button
-          className={cn('relative inline-block h-9 w-9 overflow-hidden rounded-md border', className)}
+          className={cn(
+            'relative inline-flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-md border',
+            className,
+          )}
           style={style}
         >
-          <AnimatePresence>
-            {resolvedTheme === 'dark' ? (
-              <motion.div
-                key="dark"
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ y: 20, opacity: 0.02, rotate: -90 }}
-                animate={{ y: 0, opacity: 1, rotate: 0 }}
-                exit={{ y: 20, opacity: 0.02, rotate: 90 }}
-                transition={{ duration: 0.25, ease: 'easeInOut' }}
-              >
-                <MoonIcon className="h-4 w-4" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="light"
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ y: 20, opacity: 0.02, rotate: -90 }}
-                animate={{ y: 0, opacity: 1, rotate: 0 }}
-                exit={{ y: 20, opacity: 0.02, rotate: 90 }}
-                transition={{ duration: 0.25, ease: 'easeInOut' }}
-              >
-                <SunIcon className="h-4 w-4" />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {resolvedTheme === 'dark' ? <MoonIcon className="h-4 w-4" /> : <SunIcon className="h-4 w-4" />}
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" side="bottom" className="z-popover">

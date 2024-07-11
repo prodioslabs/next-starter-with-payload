@@ -38,3 +38,10 @@ next-env.d.ts
 # Ignore Media Files
 public/media
 public/media-next
+
+# sst
+.sst
+
+
+# open-next
+.open-next

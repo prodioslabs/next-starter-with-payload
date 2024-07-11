@@ -1,5 +1,14 @@
-export type CreateContextOptions = {}
+// TODO: Replace with actual session type from auth system
+type Session = {
+  user: {}
+}
+
+export type CreateContextOptions = {
+  session: Session | null
+}
 
 export async function createTRPCContext(): Promise<CreateContextOptions> {
-  return {}
+  return {
+    session: null,
+  }
 }

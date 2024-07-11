@@ -1,5 +1,5 @@
 import configPromise from '@payload-config'
-import type { InitOptions } from 'payload/config'
+import type { InitOptions } from 'payload'
 import { getPayload } from 'payload'
 type GetPayloadClientOptions = Omit<InitOptions, 'config'>
 

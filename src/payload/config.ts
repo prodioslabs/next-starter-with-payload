@@ -3,10 +3,12 @@ import { fileURLToPath } from 'url'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { buildConfig } from 'payload'
+import { s3Storage } from '@payloadcms/storage-s3'
+import { Resource } from 'sst'
+import { env } from '@/env'
 import { Users } from './collections/users'
 import { Media } from './collections/media'
 import { Home } from './collections/home'
-import { env } from '@/env'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -18,7 +20,16 @@ export default buildConfig({
   collections: [Users, Media],
   globals: [Home],
   editor: lexicalEditor({}),
-  plugins: [],
+  plugins: [
+    s3Storage({
+      enabled: env.NODE_ENV === 'production',
+      collections: {
+        [Media.slug]: true,
+      },
+      bucket: Resource.NextStarterWithPayloadBucket.name,
+      config: {},
+    }),
+  ],
   secret: env.PAYLOAD_SECRET,
   typescript: {
     outputFile: path.resolve(dirname, 'types.ts'),
